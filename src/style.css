@@ -1,0 +1,218 @@
+@import 'tailwindcss';
+
+/* Toggle dark mode via .dark class on <html> (set pre-paint in index.html) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Cendekia LMS
+   Brand: "iris" indigo-violet (trust + academia). Accent: warm scholarly gold.
+   Neutrals are cool slate with a faint indigo bias — chosen, not default grey.
+--------------------------------------------------------------------------- */
+:root {
+  /* neutrals (light) — soft blue-indigo tint so it never reads as flat white.
+     Cards stay pure white to "pop" against the tinted surface. */
+  --surface:      #dfe6f5;
+  --surface-2:    #d2dbef;
+  --card:         #ffffff;
+  --card-2:       #eef3fd;
+  --border:       #d8dfee;
+  --border-strong:#c6cfe4;
+  --ink:          #191d2b;
+  --muted:        #545b70;
+  --faint:        #7f879d;
+
+  /* brand — iris */
+  --brand-50:  #eef0fe;
+  --brand-100: #e0e2fd;
+  --brand-200: #c5c7fb;
+  --brand-300: #a2a3f6;
+  --brand-400: #8280ef;
+  --brand-500: #6a63e8;
+  --brand-600: #5145e5;
+  --brand-700: #4234c9;
+  --brand-800: #372ca0;
+  --brand-900: #2f2980;
+
+  /* accent — scholarly gold */
+  --gold:      #d99a2b;
+  --gold-soft: #f8edd3;
+
+  /* semantic */
+  --success:    #12a150;
+  --success-soft:#dcf3e5;
+  --warning:    #d97706;
+  --warning-soft:#fbeccd;
+  --danger:     #dc2f42;
+  --danger-soft:#fbe1e4;
+  --info:       #2f6bec;
+  --info-soft:  #dbe6fd;
+
+  --ring: color-mix(in oklab, var(--brand-600) 45%, transparent);
+  --shadow-color: 232 30% 40%;
+}
+
+.dark {
+  --surface:      #0c0e15;
+  --surface-2:    #12151f;
+  --card:         #161a26;
+  --card-2:       #1b2030;
+  --border:       #262b3b;
+  --border-strong:#333a4f;
+  --ink:          #e9ebf4;
+  --muted:        #a0a6bd;
+  --faint:        #6f758c;
+
+  --brand-50:  #1a1d3a;
+  --brand-100: #23264a;
+  --brand-200: #2f3366;
+  --brand-300: #4a4bb0;
+  --brand-400: #6d6ae0;
+  --brand-500: #8785f0;
+  --brand-600: #8b8ff5;
+  --brand-700: #a6a8f8;
+  --brand-800: #c2c3fb;
+  --brand-900: #d9dafc;
+
+  --gold:      #ecb54e;
+  --gold-soft: #33280d;
+
+  --success:    #34d17f;
+  --success-soft:#123020;
+  --warning:    #e8a33d;
+  --warning-soft:#33260c;
+  --danger:     #f16a7a;
+  --danger-soft:#331419;
+  --info:       #6f9bf5;
+  --info-soft:  #14203a;
+
+  --shadow-color: 232 40% 3%;
+}
+
+/* Map semantic tokens onto Tailwind's color/utility system */
+@theme inline {
+  --font-sans:  'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces Variable', ui-serif, Georgia, serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --color-surface:   var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card:      var(--card);
+  --color-card-2:    var(--card-2);
+  --color-border:    var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ink:       var(--ink);
+  --color-muted:     var(--muted);
+  --color-faint:     var(--faint);
+
+  --color-brand-50:  var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+
+  --color-gold:      var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-success:      var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning:      var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger:       var(--danger);
+  --color-danger-soft:  var(--danger-soft);
+  --color-info:      var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --radius-xl: 0.9rem;
+  --radius-2xl: 1.15rem;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Headings inherit their container's color (so light-on-dark panels work).
+     Tight tracking + balanced wrapping for a modern, calm read. */
+  h1, h2, h3, h4 { letter-spacing: -0.015em; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: color-mix(in oklab, var(--brand-500) 30%, transparent); }
+
+  /* Refined scrollbars */
+  * { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
+  *::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--faint); background-clip: content-box; }
+
+  :focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: 6px; }
+}
+
+@layer components {
+  .card {
+    background: linear-gradient(168deg, var(--card) 0%, var(--card-2) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 1px 2px -1px hsl(var(--shadow-color) / 0.10), 0 1px 3px hsl(var(--shadow-color) / 0.06);
+  }
+  .card-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: 0 8px 24px -12px hsl(var(--shadow-color) / 0.28);
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font-weight: 600; font-size: .875rem; line-height: 1;
+    padding: .625rem 1rem; border-radius: .7rem; cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease, box-shadow .15s ease;
+    white-space: nowrap; user-select: none;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--brand-600); color: #fff; box-shadow: 0 4px 14px -6px color-mix(in oklab, var(--brand-600) 70%, transparent); }
+  .dark .btn-primary { color: #0c0e15; }
+  .btn-primary:hover { background: var(--brand-700); }
+  .dark .btn-primary:hover { background: var(--brand-500); }
+  .btn-ghost { background: transparent; color: var(--muted); }
+  .btn-ghost:hover { background: var(--surface-2); color: var(--ink); }
+  .btn-outline { background: var(--card); color: var(--ink); border: 1px solid var(--border-strong); }
+  .btn-outline:hover { background: var(--surface-2); border-color: var(--faint); }
+
+  .input {
+    width: 100%; background: var(--card); color: var(--ink);
+    border: 1px solid var(--border-strong); border-radius: .7rem;
+    padding: .625rem .85rem; font-size: .9rem; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .input::placeholder { color: var(--faint); }
+  .input:focus { outline: none; border-color: var(--brand-500); box-shadow: 0 0 0 3px var(--ring); }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: .3rem;
+    font-size: .72rem; font-weight: 600; letter-spacing: .01em;
+    padding: .22rem .55rem; border-radius: 999px; white-space: nowrap;
+  }
+
+  .label-eyebrow {
+    font-family: var(--font-mono); font-size: .68rem; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--faint); font-weight: 600;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+/* Page transition */
+.fade-enter-active, .fade-leave-active { transition: opacity .18s ease, transform .18s ease; }
+.fade-enter-from { opacity: 0; transform: translateY(6px); }
+.fade-leave-to { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
