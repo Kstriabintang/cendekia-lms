@@ -6,7 +6,7 @@ import { api } from '@/services/api.js'
 import { sound } from '@/lib/sound.js'
 import Chip from '@/components/Chip.vue'
 import Donut from '@/components/Donut.vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const route = useRoute()
 const router = useRouter()

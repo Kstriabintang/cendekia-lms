@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router'
 import PageHeader from '@/components/PageHeader.vue'
 import Avatar from '@/components/Avatar.vue'
 import Chip from '@/components/Chip.vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const auth = useAuth()
 const ui = useUI()

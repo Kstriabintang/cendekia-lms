@@ -8,7 +8,7 @@ import CourseCover from '@/components/CourseCover.vue'
 import Chip from '@/components/Chip.vue'
 import Avatar from '@/components/Avatar.vue'
 import Donut from '@/components/Donut.vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const route = useRoute()
 const router = useRouter()

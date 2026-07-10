@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const props = defineProps({
   color: { type: String, default: '#5145e5' },

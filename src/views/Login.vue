@@ -6,7 +6,7 @@ import { useUI } from '@/stores/ui.js'
 import { sound } from '@/lib/sound.js'
 import AtomicBackground from '@/components/AtomicBackground.vue'
 import AuroraBackground from '@/components/AuroraBackground.vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const auth = useAuth()
 const ui = useUI()

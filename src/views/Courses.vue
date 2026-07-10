@@ -7,7 +7,7 @@ import CourseCover from '@/components/CourseCover.vue'
 import Donut from '@/components/Donut.vue'
 import Chip from '@/components/Chip.vue'
 import Avatar from '@/components/Avatar.vue'
-import * as icons from 'lucide-vue-next'
+import { icons } from '@/lib/icons'
 
 const auth = useAuth()
 const courses = ref([])
