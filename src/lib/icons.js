@@ -5,6 +5,7 @@
 import {
   Activity,
   AlertCircle,
+  AlignLeft,
   ArrowRight,
   ArrowUpRight,
   Award,
@@ -29,6 +30,7 @@ import {
   ClipboardList,
   Clock,
   Component,
+  Copy,
   Database,
   Download,
   Eye,
@@ -48,6 +50,7 @@ import {
   LayoutDashboard,
   LayoutList,
   List,
+  ListChecks,
   Loader2,
   Lock,
   LogOut,
@@ -72,13 +75,16 @@ import {
   Radio,
   RefreshCw,
   RotateCcw,
+  Save,
   ScanLine,
   Search,
   SearchX,
   Send,
+  Share,
   ShieldCheck,
   Sparkles,
   Square,
+  SquarePlus,
   Star,
   Sun,
   Target,
@@ -97,7 +103,7 @@ import {
 } from 'lucide-vue-next'
 
 const registry = {
-  Activity, AlertCircle, ArrowRight, ArrowUpRight, Award, Bell, BookMarked, BookOpen, BrainCircuit, Briefcase, CalendarClock, CalendarDays, CalendarOff, CalendarRange, Check, CheckCheck, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Circle, ClipboardCheck, ClipboardList, Clock, Component, Database, Download, Eye, EyeOff, FileQuestion, FileText, FileType, Fingerprint, Flame, FlaskConical, Globe, GraduationCap, Hash, Heart, Hourglass, Info, LayoutDashboard, LayoutList, List, Loader2, Lock, LogOut, Mail, MapPin, Megaphone, Menu, MessageCircle, MessagesSquare, Moon, PanelLeftClose, PanelLeftOpen, PartyPopper, PenLine, PenTool, Pencil, Play, PlayCircle, Plus, Presentation, Printer, Radio, RefreshCw, RotateCcw, ScanLine, Search, SearchX, Send, ShieldCheck, Sparkles, Square, Star, Sun, Target, Trash2, TrendingUp, Trophy, Upload, User, UserCheck, UserPlus, Users, Video, Volume2, VolumeX, X,
+  Activity, AlertCircle, AlignLeft, ArrowRight, ArrowUpRight, Award, Bell, BookMarked, BookOpen, BrainCircuit, Briefcase, CalendarClock, CalendarDays, CalendarOff, CalendarRange, Check, CheckCheck, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Circle, ClipboardCheck, ClipboardList, Clock, Component, Copy, Database, Download, Eye, EyeOff, FileQuestion, FileText, FileType, Fingerprint, Flame, FlaskConical, Globe, GraduationCap, Hash, Heart, Hourglass, Info, LayoutDashboard, LayoutList, List, ListChecks, Loader2, Lock, LogOut, Mail, MapPin, Megaphone, Menu, MessageCircle, MessagesSquare, Moon, PanelLeftClose, PanelLeftOpen, PartyPopper, PenLine, PenTool, Pencil, Play, PlayCircle, Plus, Presentation, Printer, Radio, RefreshCw, RotateCcw, Save, ScanLine, Search, SearchX, Send, Share, ShieldCheck, Sparkles, Square, SquarePlus, Star, Sun, Target, Trash2, TrendingUp, Trophy, Upload, User, UserCheck, UserPlus, Users, Video, Volume2, VolumeX, X,
 }
 
 export const icons = new Proxy(registry, {

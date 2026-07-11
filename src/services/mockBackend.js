@@ -176,6 +176,57 @@ export const mockBackend = {
     return clone(attempt)
   },
 
+  // Normalize a raw builder payload into a clean, storable quiz.
+  // Shared by create & update so both persist the exact same shape the player reads.
+  _normalizeQuiz(payload) {
+    const questions = (payload.questions || []).map((q, i) => {
+      const base = { id: q.id || `q${i + 1}`, type: q.type === 'essay' ? 'essay' : 'mcq', text: (q.text || '').trim(), points: Math.max(1, Number(q.points) || 1) }
+      if (base.type === 'mcq') {
+        base.options = (q.options || []).map((o) => (o || '').trim()).filter((o, idx) => o !== '' || idx < 2)
+        base.answer = Math.min(Math.max(0, Number(q.answer) || 0), base.options.length - 1)
+      }
+      return base
+    })
+    return {
+      courseId: payload.courseId,
+      title: (payload.title || '').trim(),
+      passMark: Math.min(100, Math.max(0, Number(payload.passMark) || 0)),
+      duration: Math.max(1, Number(payload.duration) || 10),
+      attemptsAllowed: Math.max(1, Number(payload.attemptsAllowed) || 1),
+      questions,
+    }
+  },
+
+  async createQuiz(payload) {
+    await wait(200)
+    const data = mockBackend._normalizeQuiz(payload)
+    if (!data.courseId) throw new Error('Mata kuliah wajib dipilih')
+    if (!data.title) throw new Error('Judul kuis wajib diisi')
+    if (!data.questions.length) throw new Error('Tambahkan minimal satu soal')
+    const quiz = { id: uid('qz'), ...data }
+    db.quizzes.push(quiz); persist(db)
+    return { ...clone(quiz), course: clone(courseById(quiz.courseId)) }
+  },
+
+  async updateQuiz(quizId, payload) {
+    await wait(200)
+    const q = db.quizzes.find((x) => x.id === quizId)
+    if (!q) throw new Error('Kuis tidak ditemukan')
+    const data = mockBackend._normalizeQuiz(payload)
+    if (!data.title) throw new Error('Judul kuis wajib diisi')
+    if (!data.questions.length) throw new Error('Tambahkan minimal satu soal')
+    Object.assign(q, data)
+    persist(db)
+    return { ...clone(q), course: clone(courseById(q.courseId)) }
+  },
+
+  async deleteQuiz(quizId) {
+    await wait(120)
+    const i = db.quizzes.findIndex((x) => x.id === quizId)
+    if (i >= 0) { db.quizzes.splice(i, 1); persist(db) }
+    return true
+  },
+
   async listAnnouncements({ userId, role } = {}) {
     await wait(80)
     let list = db.announcements

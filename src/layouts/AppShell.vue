@@ -9,6 +9,7 @@ import Avatar from '@/components/Avatar.vue'
 import AtomicBackground from '@/components/AtomicBackground.vue'
 import AuroraBackground from '@/components/AuroraBackground.vue'
 import Toasts from '@/components/Toasts.vue'
+import PwaInstall from '@/components/PwaInstall.vue'
 import { icons } from '@/lib/icons'
 
 const auth = useAuth()
@@ -55,6 +56,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
 <template>
   <div class="relative min-h-screen bg-surface text-ink flex">
     <Toasts />
+    <PwaInstall />
     <!-- Living aurora background (drifting color blobs) — different mood per theme -->
     <AuroraBackground class="!fixed" style="z-index:0" :dark="ui.dark" />
     <!-- Faint atomic net on top for the scientific identity -->
@@ -106,7 +108,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
     <transition name="fade">
       <div v-if="mobileOpen" class="fixed inset-0 z-40 lg:hidden">
         <div class="absolute inset-0 bg-black/40" @click="mobileOpen = false"></div>
-        <aside class="absolute left-0 top-0 h-full w-[280px] bg-card border-r border-border p-3 flex flex-col gap-1">
+        <aside class="absolute left-0 top-0 h-full w-[280px] bg-card border-r border-border p-3 flex flex-col gap-1 overflow-y-auto safe-top safe-x">
           <div class="flex items-center gap-2.5 px-2 py-3 mb-1">
             <div class="grid h-9 w-9 place-items-center rounded-xl" style="background: var(--brand-600)">
               <svg viewBox="0 0 32 32" class="h-5 w-5"><path d="M16 6 L27 11 L16 16 L5 11 Z" fill="white"/></svg>
@@ -125,7 +127,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
 
     <!-- Main -->
     <div class="relative z-10 flex-1 min-w-0 flex flex-col">
-      <header class="sticky top-0 z-30 h-16 flex items-center gap-3 px-4 sm:px-6 border-b border-border bg-card/95 backdrop-blur-none sm:bg-card/80 sm:backdrop-blur-md">
+      <header class="sticky top-0 z-30 h-16 flex items-center gap-3 px-4 sm:px-6 border-b border-border bg-card/95 backdrop-blur-none sm:bg-card/80 sm:backdrop-blur-md safe-top safe-x">
         <button class="btn btn-ghost lg:hidden px-2" @click="mobileOpen = true"><icons.Menu :size="20" /></button>
         <h2 class="font-semibold text-[1.05rem] truncate">{{ pageTitle }}</h2>
 
@@ -198,7 +200,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
         </div>
       </header>
 
-      <main class="flex-1 p-4 sm:p-6 max-w-[1400px] w-full mx-auto">
+      <main class="flex-1 p-4 sm:p-6 max-w-[1400px] w-full mx-auto safe-x safe-bottom">
         <RouterView v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
