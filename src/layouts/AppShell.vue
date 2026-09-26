@@ -127,7 +127,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
 
     <!-- Main -->
     <div class="relative z-10 flex-1 min-w-0 flex flex-col">
-      <header class="sticky top-0 z-30 h-16 flex items-center gap-3 px-4 sm:px-6 border-b border-border bg-card/95 backdrop-blur-none sm:bg-card/80 sm:backdrop-blur-md safe-top safe-x">
+      <header class="sticky top-0 z-30 h-16 flex items-center gap-3 px-4 sm:px-6 lg:px-8 xl:px-10 border-b border-border bg-card/95 backdrop-blur-none sm:bg-card/80 sm:backdrop-blur-md safe-top safe-x">
         <button class="btn btn-ghost lg:hidden px-2" @click="mobileOpen = true"><icons.Menu :size="20" /></button>
         <h2 class="font-semibold text-[1.05rem] truncate">{{ pageTitle }}</h2>
 
@@ -200,7 +200,7 @@ function logout() { sound.play('click'); auth.logout(); router.push('/login') }
         </div>
       </header>
 
-      <main class="flex-1 p-4 sm:p-6 max-w-[1400px] w-full mx-auto safe-x safe-bottom">
+      <main class="flex-1 p-4 sm:p-6 lg:px-8 lg:py-7 xl:px-10 xl:py-8 max-w-[1440px] w-full mx-auto safe-x safe-bottom">
         <RouterView v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
